@@ -17,6 +17,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 // Laravel Backend API
-Route::resource('/rooms','RoomController')->only([
-    'index', 'store','update','destroy'
-]);
+Route::get('rooms', 'RoomController@index');
+Route::group(['prefix' => 'rooms'], function () {
+    Route::post('add', 'RoomController@store');
+    Route::get('edit/{id}', 'RoomController@edit');
+    Route::post('update/{id}', 'RoomController@update');
+    Route::post('delete/{id}', 'RoomController@destroy');
+});

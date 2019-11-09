@@ -1,6 +1,41 @@
 <template>
     <div>
-        <h3 class="text-center">All rooms</h3><br/>
+        <div class="row">
+
+        <div class="col-md-5">
+            <h3 class="text-center">Book room</h3>
+            <hr class="sub-hr">
+        <div class="row">
+            <div class="col-md-12">
+                <form @submit.prevent="bookOrupadate">
+                    <input type="hidden" name="id" :value="room.id">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" class="form-control" v-model="room.name">
+                    </div>
+                    <div class="form-group">
+                        <label>Booking Date</label>
+                        <input type="date" class="form-control" v-model="room.booking_date">
+                    </div>
+                    <div class="form-group">
+                        <label>CheckOut Date</label>
+                        <input type="date" class="form-control" v-model="room.checkout_date">
+                    </div>
+                    <div class="form-group">
+                        <label>National ID Number</label>
+                        <input type="integer" class="form-control" v-model="room.nid">
+                    </div>
+                    <div class="form-group">
+                        <label>Mobile</label>
+                        <input type="integer" class="form-control" v-model="room.mobile">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+        </div>
+        <div class="col-md-7">
+            <h3 class="text-center">All rooms</h3><hr class="sub-hr">
 
         <table class="table table-bordered">
             <thead>
@@ -23,14 +58,17 @@
                 <td>{{ room.mobile }}</td>
                 <td>
                     <div class="btn-group" role="group">
-                        <router-link :to="{params: { id: room.id },name: 'edit'}" class="btn btn-primary">Edit
-                        </router-link>
+                        
+                        <button class="btn btn-success" @click="editBooking(room.id)">Edit</button>
                         <button class="btn btn-danger" @click="deleteroom(room.id)">Delete</button>
                     </div>
                 </td>
             </tr>
             </tbody>
         </table>
+        </div>
+        </div>
+        
     </div>
 </template>
 
@@ -38,20 +76,34 @@
     export default {
         data() {
             return {
-                rooms: []
+                rooms: [],
+                room:{}
             }
         },
         created() {
             this.axios
-                .get('http://localhost:8000/api/rooms')
+                .get('/LVSPA/api/rooms')
                 .then(response => {
                     this.rooms = response.data;
                 });
         },
         methods: {
+            bookOrupadate() {
+                this.axios
+                    .post('/LVSPA/api/rooms/add', this.room)
+                    .then(response => {this.rooms = response.data;})
+                    .catch(error => console.log(error))
+                    .finally(() => this.loading = false)
+            },
+            editBooking(id){
+                this.axios
+                .get(`/LVSPA/api/rooms/edit/${id}`)
+                .then(response => {this.room = response.data;});
+            },
+            
             deleteroom(id) {
                 this.axios
-                    .delete(`http://localhost/api/rooms/${id}`)
+                    .post(`/LVSPA/api/rooms/delete/${id}`)
                     .then(response => {
                         let i = this.rooms.map(item => item.id).indexOf(id); // find index of your object
                         this.rooms.splice(i, 1)

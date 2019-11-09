@@ -7,73 +7,48 @@ use Illuminate\Http\Request;
 
 class RoomController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $rooms = Room::all();
-        return $books;
-    }
-
-
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+        return $rooms;
+    }    
     public function store(Request $request)
     {
-        $room = new Room([
-            'name' => $request->input('name'),
-            'booking_date' => $request->input('booking_date'),
-            'checkout_date' => $request->input('checkout_date'),
-            'nid' => $request->input('nid'),
-            'mobile' => $request->input('mobile'),
-            'status' => $request->input('status'),
-        ]);
-        $room->save();
+        if (!$request->id) {
+            $room = new Room([
+                'name' => $request->input('name'),
+                'booking_date' => $request->input('booking_date'),
+                'checkout_date' => $request->input('checkout_date'),
+                'nid' => $request->input('nid'),
+                'mobile' => $request->input('mobile'),
 
-        return response()->json('The room successfully added');
+            ]);
+            $room->save();
+        }else{
+            $room = Room::find($request->id);
+            $room->update($request->all());
+
+        }
+        
+        $rooms = Room::all();
+        return $rooms;
     }
 
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Room  $room
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Room $room)
+    public function edit($id)
     {
-        $room = [
-            'name' => $request->input('name'),
-            'booking_date' => $request->input('booking_date'),
-            'checkout_date' => $request->input('checkout_date'),
-            'nid' => $request->input('nid'),
-            'mobile' => $request->input('mobile'),
-            'status' => $request->input('status'),
-        ];
-        $room->save();
+      $room = Room::find($id);
+      return $room;
+  }
 
-        return response()->json('The room successfully added');
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Room  $room
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Room $room)
-    {
-        $room->delete();
 
-        return response()->json('The room successfully deleted');
-    }
+
+  public function destroy($id)
+  {
+    $room = Room::find($id) ;
+    $room->delete();
+
+    return response()->json('The room successfully deleted');
+}
 }
