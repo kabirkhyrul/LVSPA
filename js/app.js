@@ -1911,6 +1911,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1926,7 +1927,7 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
-    bookroom: function bookroom() {
+    bookOrupadate: function bookOrupadate() {
       var _this2 = this;
 
       this.axios.post('/LVSPA/api/rooms/add', this.room).then(function (response) {
@@ -1944,23 +1945,16 @@ __webpack_require__.r(__webpack_exports__);
         _this3.room = response.data;
       });
     },
-    updateBooking: function updateBooking() {
+    deleteroom: function deleteroom(id) {
       var _this4 = this;
 
-      this.axios.post("/LVSPA/api/rooms/".concat(this.$route.params.id), this.room).then(function (response) {
-        return _this4.created();
-      });
-    },
-    deleteroom: function deleteroom(id) {
-      var _this5 = this;
-
       this.axios.post("/LVSPA/api/rooms/delete/".concat(id)).then(function (response) {
-        var i = _this5.rooms.map(function (item) {
+        var i = _this4.rooms.map(function (item) {
           return item.id;
         }).indexOf(id); // find index of your object
 
 
-        _this5.rooms.splice(i, 1);
+        _this4.rooms.splice(i, 1);
       });
     }
   }
@@ -37302,11 +37296,16 @@ var render = function() {
                 on: {
                   submit: function($event) {
                     $event.preventDefault()
-                    return _vm.bookroom($event)
+                    return _vm.bookOrupadate($event)
                   }
                 }
               },
               [
+                _c("input", {
+                  attrs: { type: "hidden", name: "id" },
+                  domProps: { value: _vm.room.id }
+                }),
+                _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
                   _c("label", [_vm._v("Name")]),
                   _vm._v(" "),
@@ -37440,7 +37439,7 @@ var render = function() {
                 _c(
                   "button",
                   { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-                  [_vm._v("book room")]
+                  [_vm._v("Submit")]
                 )
               ]
             )
@@ -37452,7 +37451,7 @@ var render = function() {
         _c("h3", { staticClass: "text-center" }, [_vm._v("All rooms")]),
         _c("hr", { staticClass: "sub-hr" }),
         _vm._v(" "),
-        _c("table", { staticClass: "table table-bordered" }, [
+        _c("table", { staticClass: "table table-striped table-bordered" }, [
           _vm._m(0),
           _vm._v(" "),
           _c(

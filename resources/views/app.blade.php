@@ -8,13 +8,83 @@
     
     <link href="{{ mix('css/app.css') }}" type="text/css" rel="stylesheet"/>
     <style type="text/css">
+        body {
+  padding: 2vw;
+  color:white;
+  justify-content: center;
+  
+  
+  background: #222;
+
+}
+th{
+    color:white;
+}
+td{
+    color: white;
+}
+        h1 {
+  font-size: calc(12px + 5vh);
+  line-height: calc(12px + 5vh);
+
+  text-shadow: 0 0 5px #ffa500, 0 0 15px #ffa500, 0 0 20px #ffa500, 0 0 40px #ffa500, 0 0 60px #ff0000, 0 0 10px #ff8d00, 0 0 98px #ff0000;
+    color: #fff6a9;
+  
+  text-align: center;
+  animation: blink 12s infinite;
+  -webkit-animation: blink 12s infinite;
+}
+@-webkit-keyframes blink {
+  20%,
+  24%,
+  55% {
+    color: #111;
+    text-shadow: none;
+  }
+
+  0%,
+  19%,
+  21%,
+  23%,
+  25%,
+  54%,
+  56%,
+  100% {
+/*     color: #fccaff;
+    text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff,
+      0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092; */
+  text-shadow: 0 0 5px #ffa500, 0 0 15px #ffa500, 0 0 20px #ffa500, 0 0 40px #ffa500, 0 0 60px #ff0000, 0 0 10px #ff8d00, 0 0 98px #ff0000;
+    color: #fff6a9;
+  }
+}
+
+@keyframes blink {
+  20%,
+  24%,
+  55% {
+    color: #111;
+    text-shadow: none;
+  }
+
+  0%,
+  19%,
+  21%,
+  23%,
+  25%,
+  54%,
+  56%,
+  100% {
+/*     color: #fccaff;
+    text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff,
+      0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092; */
+  text-shadow: 0 0 5px #ffa500, 0 0 15px #ffa500, 0 0 20px #ffa500, 0 0 40px #ffa500, 0 0 60px #ff0000, 0 0 10px #ff8d00, 0 0 98px #ff0000;
+    color: #fff6a9;
+  }
+}
         h3{
         text-align: center;text-shadow: 1px 1px 2px black;font-weight: bolder;
     }
-    hr {
-    border-top: 4px double #8c8b8b;
-    text-align: center;
-}
+    
 hr:after {
     
     display: inline-block;
@@ -47,7 +117,7 @@ hr.sub-hr:before {
 </head>
 <body>
     <div id="app">
-        <h3 style="">Room Booking API</h3>
+        <h1 style="">Room Booking API</h1>
         <hr>
         <div class="container">
             <all-rooms></all-rooms>   

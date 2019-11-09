@@ -37,7 +37,7 @@
         <div class="col-md-7">
             <h3 class="text-center">All rooms</h3><hr class="sub-hr">
 
-        <table class="table table-bordered">
+        <table class="table table-striped table-bordered">
             <thead>
             <tr>
                 
