@@ -5,7 +5,7 @@ import EditBook from './components/EditBooking.vue';
 export const routes = [
     {
         name: 'home',
-        path: 'http://localhost/LVSPA/',
+        path: '/',
         component: AllBooks,
         children: [{
         name: 'add',

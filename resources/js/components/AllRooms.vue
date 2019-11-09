@@ -43,7 +43,7 @@
         },
         created() {
             this.axios
-                .get('http://localhost/api/rooms')
+                .get('http://localhost:8000/api/rooms')
                 .then(response => {
                     this.rooms = response.data;
                 });
