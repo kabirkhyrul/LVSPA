@@ -18,9 +18,9 @@ class CreateRoomsTable extends Migration
             $table->string('name');
             $table->date('booking_date');
             $table->date('checkout_date');
-            $table->string('image');
             $table->integer('nid');
             $table->string('mobile');
+            $table->enum('status', ['booked', 'available']);
             $table->timestamps();
         });
     }

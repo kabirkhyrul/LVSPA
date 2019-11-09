@@ -14,7 +14,8 @@ class RoomController extends Controller
      */
     public function index()
     {
-        return Room::all();
+        $rooms = Room::all();
+        return $books;
     }
 
     /**
@@ -24,7 +25,7 @@ class RoomController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -35,7 +36,17 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $room = new Room([
+            'name' => $request->input('name'),
+            'booking_date' => $request->input('booking_date'),
+            'checkout_date' => $request->input('checkout_date'),
+            'nid' => $request->input('nid'),
+            'mobile' => $request->input('mobile'),
+            'status' => $request->input('status'),
+        ]);
+        $room->save();
+
+        return response()->json('The room successfully added');
     }
 
     /**
@@ -57,7 +68,7 @@ class RoomController extends Controller
      */
     public function edit(Room $room)
     {
-        //
+        
     }
 
     /**
@@ -69,7 +80,17 @@ class RoomController extends Controller
      */
     public function update(Request $request, Room $room)
     {
-        //
+        $room = [
+            'name' => $request->input('name'),
+            'booking_date' => $request->input('booking_date'),
+            'checkout_date' => $request->input('checkout_date'),
+            'nid' => $request->input('nid'),
+            'mobile' => $request->input('mobile'),
+            'status' => $request->input('status'),
+        ];
+        $room->save();
+
+        return response()->json('The room successfully added');
     }
 
     /**
@@ -80,6 +101,8 @@ class RoomController extends Controller
      */
     public function destroy(Room $room)
     {
-        //
+        $room->delete();
+
+        return response()->json('The room successfully deleted');
     }
 }
