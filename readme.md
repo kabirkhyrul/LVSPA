@@ -1,4 +1,6 @@
 # Laravel Vue Single Page Application
+[![GitHub issues](https://img.shields.io/github/issues/kabirkhyrul/LVSPA?style=for-the-badge)](https://github.com/kabirkhyrul/LVSPA/issues)  [![GitHub forks](https://img.shields.io/github/forks/kabirkhyrul/LVSPA?style=for-the-badge)](https://github.com/kabirkhyrul/LVSPA/network) [![GitHub stars](https://img.shields.io/github/stars/kabirkhyrul/LVSPA?style=for-the-badge)](https://github.com/kabirkhyrul/LVSPA/stargazers) [![GitHub license](https://img.shields.io/github/license/kabirkhyrul/LVSPA?style=for-the-badge)](https://github.com/kabirkhyrul/LVSPA/blob/master/LICENSE)
+
 This is single page api using Vue.Js frontend and Laravel API backend. 
 
 # Demo
